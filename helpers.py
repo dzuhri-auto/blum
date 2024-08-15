@@ -44,3 +44,39 @@ def mapping_role_color(role):
         role = f"<lc>{role}</lc>"
 
     return role
+
+
+def populate_not_started_tasks(tasks: list):
+    not_started_tasks = []
+    for task in tasks:
+        if task.get("title") == "Promo":
+            continue
+        sub_tasks = task.get("tasks")
+        for sub_task in sub_tasks:
+            if (
+                sub_task.get("status") == "NOT_STARTED"
+                and sub_task.get("socialSubscription", {}).get("openInTelegram") is not True
+                and sub_task.get("isHidden") is not True
+            ):
+                temp_task = {
+                    "task_id": sub_task.get("id"),
+                    "task_title": sub_task.get('title'),
+                }
+                not_started_tasks.append(temp_task)
+    return not_started_tasks
+
+
+def populate_not_claimed_tasks(tasks: list):
+    not_claimed_tasks = []
+    for task in tasks:
+        if task.get("title") == "Promo":
+            continue
+        sub_tasks = task.get("tasks")
+        for sub_task in sub_tasks:
+            if sub_task.get("status") == "READY_FOR_CLAIM":
+                temp_task = {
+                    "task_id": sub_task.get("id"),
+                    "task_title": sub_task.get('title'),
+                }
+                not_claimed_tasks.append(temp_task)
+    return not_claimed_tasks
