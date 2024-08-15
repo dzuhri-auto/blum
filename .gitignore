@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Dzuhri - auto
+b64_result.txt
+final_result.py
+reveal.py
+
 # C extensions
 *.so
 
