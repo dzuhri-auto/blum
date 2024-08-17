@@ -60,7 +60,7 @@ def populate_not_started_tasks(tasks: list):
             ):
                 temp_task = {
                     "task_id": sub_task.get("id"),
-                    "task_title": sub_task.get('title'),
+                    "task_title": sub_task.get("title"),
                 }
                 not_started_tasks.append(temp_task)
     return not_started_tasks
@@ -76,7 +76,8 @@ def populate_not_claimed_tasks(tasks: list):
             if sub_task.get("status") == "READY_FOR_CLAIM":
                 temp_task = {
                     "task_id": sub_task.get("id"),
-                    "task_title": sub_task.get('title'),
+                    "task_title": sub_task.get("title"),
+                    "task_reward": sub_task.get("reward"),
                 }
                 not_claimed_tasks.append(temp_task)
     return not_claimed_tasks
